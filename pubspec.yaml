@@ -1,0 +1,75 @@
+name: tila_app_2
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+  google_maps_flutter: ^2.5.0
+  location: ^5.0.3
+  flutter_map: ^6.0.1
+  latlong2: ^0.9.0
+  geolocator: ^10.1.0
+  geocoding: ^2.0.0
+
+
+
+
+  
+  cupertino_icons: ^1.0.6
+  lucide_icons: ^0.257.0
+  google_fonts: ^6.1.0
+  font_awesome_flutter: ^10.6.0
+
+dev_dependencies:
+  flutter_launcher_icons: ^0.14.3
+  flutter_test:
+    sdk: flutter
+
+ 
+  flutter_lints: ^4.0.0
+
+
+flutter:
+   
+  
+  uses-material-design: true
+
+  
+  assets:
+      - assets/images/onboarding_image.jpg
+      - assets/images/woman_side.jpg
+      - assets/images/record.jpg
+      - assets/images/wonder_women.jpg
+      - assets/images/pta.png 
+      - assets/images/ptc.png
+      - assets/images/login2.jpg
+      - assets/images/google_logo.jpg
+      - assets/images/home_banner.jpg
+      - assets/images/emergency_call.jpg
+      - assets/images/record_incident.jpg
+      - assets/images/recordwvoice.jpg
+      - assets/images/recordwcamera.jpg
+      - assets/images/register.jpg
+      - assets/images/fakecall.jpg
+      - assets/images/firstmenu.jpg
+flutter_icons:
+  android: true
+  ios: true
+  image_path: "assets/images/ptb.png" 
+  adaptive_icon_background: "#A82AE3"  
+  adaptive_icon_foreground: "assets/images/ptb.png" 
+  remove_alpha_ios: true  
+
+
+
+
+ 
