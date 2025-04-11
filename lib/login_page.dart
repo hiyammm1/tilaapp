@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'register_page.dart';
 import 'home_page.dart';
 
@@ -10,7 +11,31 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  final TextEditingController _emailController = TextEditingController();
+  final TextEditingController _passwordController = TextEditingController();
   bool _obscurePassword = true;
+
+  
+  void _loginUser(BuildContext context) async {
+    try {
+     
+      UserCredential userCredential = await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
+
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(builder: (context) => const HomePage()),
+      );
+    } on FirebaseAuthException catch (e) {
+      
+      print(e.message);
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(e.message ?? 'Login failed')),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +46,7 @@ class _LoginPageState extends State<LoginPage> {
         builder: (context, constraints) {
           return Stack(
             children: [
-              // Background image with gradient overlay
+              
               Positioned(
                 top: 0,
                 left: 0,
@@ -50,7 +75,7 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ),
 
-              // Back button
+             
               Positioned(
                 top: 40,
                 left: 10,
@@ -77,8 +102,10 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 30),
 
-                        const TextField(
-                          decoration: InputDecoration(
+                        // Email input field
+                        TextField(
+                          controller: _emailController,
+                          decoration: const InputDecoration(
                             labelText: "E-mail",
                             prefixIcon: Icon(Icons.email),
                             border: UnderlineInputBorder(),
@@ -86,7 +113,9 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                         const SizedBox(height: 15),
 
+                        // Password input field
                         TextField(
+                          controller: _passwordController,
                           obscureText: _obscurePassword,
                           decoration: InputDecoration(
                             labelText: "Password",
@@ -108,20 +137,18 @@ class _LoginPageState extends State<LoginPage> {
                         Align(
                           alignment: Alignment.centerRight,
                           child: TextButton(
-                            onPressed: () {},
+                            onPressed: () {
+                              // Forgot password functionality (optional)
+                            },
                             child: const Text("Forgot Password?", style: TextStyle(color: Colors.blue)),
                           ),
                         ),
 
                         const SizedBox(height: 10),
 
+                        // Login button
                         ElevatedButton(
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(builder: (context) => const HomePage()),
-                            );
-                          },
+                          onPressed: () => _loginUser(context), 
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.purple,
                             foregroundColor: Colors.white,
@@ -135,6 +162,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         const SizedBox(height: 12),
 
+                        // Google login button (optional)
                         OutlinedButton(
                           onPressed: () {},
                           style: OutlinedButton.styleFrom(
@@ -160,6 +188,7 @@ class _LoginPageState extends State<LoginPage> {
 
                         const SizedBox(height: 15),
 
+                        // Register link
                         GestureDetector(
                           onTap: () {
                             Navigator.push(

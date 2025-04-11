@@ -13,7 +13,7 @@ class CurrentLocationScreen extends StatefulWidget {
 class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
   LatLng? _currentPosition;
   String _locationStatus = 'Fetching location...';
-  bool _isPopupVisible = false;  // To track the popup visibility
+  bool _isPopupVisible = false;  
 
   @override
   void initState() {
@@ -90,7 +90,7 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
                     center: _currentPosition,
                     zoom: 15.0,
                     onTap: (tapPosition, point) {
-                      // Close the popup if you tap anywhere else on the map
+                     
                       if (_isPopupVisible) {
                         _togglePopupVisibility();
                       }
@@ -110,7 +110,7 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
                           height: 60,
                           child: GestureDetector(
                             onTap: () {
-                              // Open the popup when the marker is tapped
+                             
                               if (!_isPopupVisible) {
                                 _togglePopupVisibility();
                               }
@@ -126,7 +126,7 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
                     ),
                   ],
                 ),
-                // Show popup if _isPopupVisible is true
+                
                 if (_isPopupVisible)
                   Positioned(
                     bottom: 0,
@@ -176,11 +176,11 @@ class PopupWidget extends StatelessWidget {
               Align(
                 alignment: Alignment.center,
                 child: Text(
-                  "Current Location",  // Display the location name
+                  "Current Location", 
                   style: const TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
-                    color: Colors.purple,  // Purple color for title
+                    color: Colors.purple, 
                   ),
                 ),
               ),
@@ -189,14 +189,14 @@ class PopupWidget extends StatelessWidget {
                 top: 0,
                 child: IconButton(
                   icon: const Icon(Icons.close, color: Colors.purple),
-                  onPressed: onClose,  // Close the popup when tapped
+                  onPressed: onClose,  
                 ),
               ),
             ],
           ),
           const SizedBox(height: 10),
           Text(
-            "Lat: ${location.latitude.toStringAsFixed(4)}\nLng: ${location.longitude.toStringAsFixed(4)}",  // Display the coordinates
+            "Lat: ${location.latitude.toStringAsFixed(4)}\nLng: ${location.longitude.toStringAsFixed(4)}",  
             textAlign: TextAlign.center,
             style: const TextStyle(fontSize: 16, color: Colors.pink),
           ),
@@ -208,16 +208,16 @@ class PopupWidget extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.purple, // Purple background
+                      backgroundColor: Colors.purple, 
                     ),
                     onPressed: () {
-                      // Add your Route action here
-                      print('Get Route');  // Placeholder action
+                     
+                      print('Get Route'); 
                     },
                     child: const Icon(Icons.directions, color: Colors.white),
                   ),
                   const Text(
-                    "Route",  // Text for Route button
+                    "Route",  
                     style: TextStyle(color: Colors.purple, fontSize: 14),
                   ),
                 ],
@@ -226,17 +226,17 @@ class PopupWidget extends StatelessWidget {
                 children: [
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white, // White background
-                      foregroundColor: Colors.pink, // Pink text color
+                      backgroundColor: Colors.white, 
+                      foregroundColor: Colors.pink, 
                     ),
                     onPressed: () {
-                      // Add your Share action here
-                      print('Share Location');  // Placeholder action
+                     
+                      print('Share Location'); 
                     },
                     child: const Icon(Icons.share, color: Colors.pink),
                   ),
                   const Text(
-                    "Share",  // Text for Share button
+                    "Share",  
                     style: TextStyle(color: Colors.pink, fontSize: 14),
                   ),
                 ],

@@ -175,7 +175,7 @@ class ForumPage extends StatelessWidget {
               icon: const Icon(Icons.edit),
               label: const Text("Write Your Story"),
               onPressed: () {
-                // TODO: Navigate to story writing screen
+               
               },
             ),
           )

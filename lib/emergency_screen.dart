@@ -55,7 +55,7 @@ class EmergencyScreen extends StatelessWidget {
             icon: const Icon(Icons.arrow_back),
             onPressed: () {
               Navigator.pop(
-                  context); // This will take you back to the previous screen
+                  context); 
             },
           ),
           const SizedBox(width: 12),
