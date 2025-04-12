@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class KnowTheConditionPage extends StatelessWidget {
-  const KnowTheConditionPage({Key? key}) : super(key: key);
+  const KnowTheConditionPage({super.key});
 
   Widget buildCard({
     required IconData icon,

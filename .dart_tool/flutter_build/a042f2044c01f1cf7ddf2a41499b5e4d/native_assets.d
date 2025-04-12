@@ -1,0 +1,1 @@
+ C:\\Users\\HP\\Desktop\\tila\\.dart_tool\\flutter_build\\a042f2044c01f1cf7ddf2a41499b5e4d\\native_assets.yaml: 

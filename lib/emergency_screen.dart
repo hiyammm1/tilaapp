@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'contact.dart';  // Import your Contact model file (Ensure this is created in your project)
 
 class EmergencyScreen extends StatefulWidget {
   const EmergencyScreen({super.key});
@@ -14,10 +16,23 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
   final TextEditingController _phoneController = TextEditingController();
 
   User? get currentUser => FirebaseAuth.instance.currentUser;
+  late Box<Contact> contactsBox;  // Hive box for local storage
+
+  @override
+  void initState() {
+    super.initState();
+    _initializeHive();
+  }
+
+  // Initialize Hive
+  Future<void> _initializeHive() async {
+    contactsBox = await Hive.openBox<Contact>('emergency_contacts');
+  }
 
   Future<void> _addContact() async {
     if (_nameController.text.isEmpty || _phoneController.text.isEmpty) return;
 
+    // Add to Firebase
     await FirebaseFirestore.instance
         .collection('users')
         .doc(currentUser!.uid)
@@ -28,17 +43,29 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
       'timestamp': FieldValue.serverTimestamp(),
     });
 
+    // Add to Hive for local storage
+    final contact = Contact(
+      nickname: _nameController.text,
+      phone: _phoneController.text,
+      photoUrl: '',  // Can add photoUrl handling later if needed
+    );
+    await contactsBox.add(contact);
+
     _nameController.clear();
     _phoneController.clear();
   }
 
   Future<void> _deleteContact(String contactId) async {
+    // Delete from Firebase
     await FirebaseFirestore.instance
         .collection('users')
         .doc(currentUser!.uid)
         .collection('emergency_contacts')
         .doc(contactId)
         .delete();
+
+    // Optionally delete from Hive as well if needed
+    // contactsBox.delete(contactId);  // Requires additional ID handling in Hive
   }
 
   @override
@@ -56,7 +83,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                   height: MediaQuery.of(context).size.height * 0.25,
                   decoration: const BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/images/emergency_banner.jpg'),
+                      image: AssetImage('assets/images/fakecall.jpg'),
                       fit: BoxFit.cover,
                     ),
                     borderRadius: BorderRadius.only(
@@ -69,7 +96,7 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
                   top: 16,
                   left: 16,
                   child: IconButton(
-                    icon: const Icon(Icons.arrow_back, color: Colors.white),
+                    icon: const Icon(Icons.arrow_back, color: Colors.black),
                     onPressed: () => Navigator.pop(context),
                   ),
                 ),
@@ -90,7 +117,6 @@ class _EmergencyScreenState extends State<EmergencyScreen> {
 
             const SizedBox(height: 16),
 
-         
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [

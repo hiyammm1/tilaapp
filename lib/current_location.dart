@@ -100,7 +100,7 @@ class _CurrentLocationScreenState extends State<CurrentLocationScreen> {
                     TileLayer(
                       urlTemplate:
                           "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
-                      subdomains: ['a', 'b', 'c'],
+                      subdomains: const ['a', 'b', 'c'],
                     ),
                     MarkerLayer(
                       markers: [
@@ -173,11 +173,11 @@ class PopupWidget extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Align(
+              const Align(
                 alignment: Alignment.center,
                 child: Text(
                   "Current Location", 
-                  style: const TextStyle(
+                  style: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 18,
                     color: Colors.purple, 

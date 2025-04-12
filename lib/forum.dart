@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class ForumPage extends StatelessWidget {
-  const ForumPage({Key? key}) : super(key: key);
+  const ForumPage({super.key});
 
   Widget buildPost({
     required String name,
@@ -90,12 +90,12 @@ class ForumPage extends StatelessWidget {
                   onPressed: () => Navigator.pop(context),
                 ),
               ),
-              Positioned(
+              const Positioned(
                 left: 16,
                 bottom: 20,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
+                  children: [
                     Row(
                       children: [
                         Icon(Icons.forum, color: Colors.white, size: 24),
