@@ -72,6 +72,8 @@ flutter:
       - assets/images/register.jpg
       - assets/images/fakecall.jpg
       - assets/images/firstmenu.jpg
+      - assets/images/incident1.jpg
+      - assets/images/incident2.jpg
 flutter_icons:
   android: true
   ios: true

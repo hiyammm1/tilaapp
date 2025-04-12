@@ -14,9 +14,9 @@ class ViewIncidentsScreen extends StatelessWidget {
             child: ListView(
               padding: const EdgeInsets.all(16),
               children: [
-                _buildVideoThumbnail("assets/ambulance.jpg"),
+                _buildVideoThumbnail("assets/images/incident1.jpg"),
                 const SizedBox(height: 16),
-                _buildVideoThumbnail("assets/domestic_abuse.jpg"),
+                _buildVideoThumbnail("assets/images/incident2.jpg"),
                 const SizedBox(height: 24),
                 _buildChatSection(),
               ],

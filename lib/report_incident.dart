@@ -19,7 +19,7 @@ class ReportIncident extends StatelessWidget {
                   description:
                       "Record the incident experienced with the camera",
                   image:
-                      "assets/video_illustration.png", // Replace with your asset
+                      "assets/images/recordwcamera.jpg", // Replace with your asset
                   icon: Icons.videocam,
                 ),
                 const SizedBox(height: 16),
@@ -28,7 +28,7 @@ class ReportIncident extends StatelessWidget {
                   description:
                       "Record the incident experienced with a voice recorder",
                   image:
-                      "assets/voice_illustration.png", // Replace with your asset
+                      "assets/images/recordwvoice.jpg", // Replace with your asset
                   icon: Icons.mic,
                 ),
                 const SizedBox(height: 32),
